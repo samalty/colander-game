@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Colander Game</title>
+        <link href="style.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="scores">
+                <h3>Team 1</h3><h3>Team 2</h3>
+                <h3><span id="team1">0</span><span>:</span><span id="team2">0</span></h3>
+            </div>
+            <div class="colanderContainer" id="fillColander">
+                <form class="form" id="colanderForm">
+                    <input type="text" name="input">
+                    <button type="submit">Add to colander</button>
+                </form>
+                <button id="begin">Begin game</button>
+                <br>
+                <button id="got">Start</button>
+                <button id="pass">Pass</button>
+            </div>
+            <div id="gameMode">
+                <p id="output">Ready?</p>
+            </div>
+            <div id="display">
+                <p id="timer">60</p>
+            </div>
+            <div class="buttons">
+                <button id="startStop" onclick="startStop()">Start</button><button id="reset" onclick="reset()">Reset</button>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
