@@ -18,3 +18,81 @@
 .visible{
     display: inline-block;
 }
+
+@media screen and (max-width: 1125px) {
+
+    /* Scores */
+
+    .team1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        float: left;
+        width: 47%;
+        padding: 5px;
+        background-image: linear-gradient(to right, #000099, #ffffff);
+        border-radius: 10px;
+    }
+    .team2{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        float: right;
+        width: 47%;
+        padding: 5px;
+        background-image: linear-gradient(to left, #cc0000, #ffffff);
+        border-radius: 10px;
+    }
+    h3{
+        margin: 0;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    /* Items */
+
+    #gameMode{
+        width: 100%;
+        text-align: center;
+    }
+
+    #output{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+    }
+
+    /* Timer */
+
+    #display{
+        width: 100%;
+        text-align: center;
+    }
+
+    #timer{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+    }
+
+    /* Game buttons */
+
+    .gameBtn{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        display: inline-block;
+        width: 50%;
+        padding: 20px;
+        border: 3px solid #ffffff;
+        border-radius: 10px;
+        cursor: pointer;
+        color: #ffffff;
+    }
+    #got{
+        background-color: #00b300;
+        margin: auto;
+        width: 100%;
+    }
+    #pass{
+        background-color: #cc0000;
+    }
+    #next{
+        background-color: #b3ccff;
+    }
+}
