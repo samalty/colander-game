@@ -10,3 +10,11 @@
 .denied{
     border: 5px solid #cc0000;
 }
+
+#next{
+    /*display: none;*/
+}
+
+.visible{
+    display: inline-block;
+}
