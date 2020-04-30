@@ -6,32 +6,42 @@
     </head>
     <body>
         <div class="container">
-            <div class="scores">
-                <div class="team1">
-                    <h3>Blue Team</h3>
-                    <h3><span id="team1">0</span></h3>
+            <button class="accordion">How to play</button>
+            <div class="panel">
+                <p>Lorem ipsum...</p>
+            </div>
+            <div class="disappear scores" id="scores">
+                <div class="team team1" id="team1div">
+                    <h5>Team A</h5>
+                    <h5><span id="team1">0</span></h5>
                 </div>
-                <div class="team2">
-                    <h3>Red Team</h3>
-                    <h3><span id="team2">0</span></h3>
+                <div class="team team2" id="team2div">
+                    <h5>Team B</h5>
+                    <h5><span id="team2">0</span></h5>
                 </div>
             </div>
-            <div class="colanderContainer" id="fillColander">
+            <div class=" disappear round" id="round">
+                <p><span id="round">Round 1: Articulate</span></p>
+            </div>
+            <div class="colander" id="fillColander">
+                <img src="static/img/colander.png" class="img">
                 <form class="form" id="colanderForm">
                     <input type="text" name="input">
-                    <button type="submit">Add to colander</button>
+                    <button type="submit" class="btn submit">Add to colander</button>
                 </form>
-                <button id="begin">Begin game</button>
+                <br>
+                <button id="begin" class="btn begin">Begin game</button>
             </div>
-            <div id="gameMode">
+            <div class="disappear" id="gameMode">
                 <p id="output">Ready?</p>
             </div>
-            <div id="display">
+            <div class="disappear" id="display">
                 <p id="timer">60</p>
             </div>
-            <div class="buttons">
-                <button class="gameBtn" id="got">Go!</button>
-                <button class="gameBtn" id="pass">Pass</button><button class="gameBtn" id="next">Next player</button>
+            <div class="disappear buttons" id="buttons">
+                <button class="btn gameBtn" id="got">Go!</button>
+                <button class="btn gameBtn" id="pass">Pass</button><button class="btn gameBtn" id="next">Next player</button>
+                <button class="btn gameBtn" id="nextRound">Next round >></button>
                 <!--<button id="startStop" onclick="startStop()">Start</button><button id="reset" onclick="reset()">Reset</button>-->
             </div>
         </div>
