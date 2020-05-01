@@ -50,8 +50,8 @@ colanderForm.addEventListener("submit", (e) => {
 });
 
 beginButton.addEventListener("click", (e) => {
-    //document.getElementById("fillColander").style.display="none";
-    console.log(colander);
+    document.getElementById("nav").classList.add("disappear");
+    document.getElementById("accordion").classList.add("disappear");
     document.getElementById("fillColander").classList.add("disappear");
     document.getElementById("scores").classList.remove("disappear");
     document.getElementById("round").classList.remove("disappear");
@@ -62,7 +62,10 @@ beginButton.addEventListener("click", (e) => {
 
 function timer(){
     seconds--;
+    document.getElementById("display").classList.add("output");
+    seconds <= 10 && seconds >= 0 ? document.getElementById("display").classList.add("runningOut"): "";
     if (seconds  === 0) {
+        document.getElementById("display").classList.remove("runningOut")
         window.clearInterval(interval);
         status = "stopped";
         seconds = "Time's up! Next player's turn.";
@@ -112,7 +115,7 @@ gotItButton.addEventListener("click", (e) => {
 
     if (begun == false) {
         begun = true;
-        interval = window.setInterval(timer, 1000);
+        interval = window.setInterval(timer, 100);
         status = "started";
         document.getElementById("got").innerHTML = "Got It!";
     } else if (colander.length < 1) {
@@ -135,6 +138,8 @@ gotItButton.addEventListener("click", (e) => {
     output = random[0];
     // Overwrite prevRandom value for splice method in else statement
     prevRandom = random[1];
+    // Add CSS to output
+    document.getElementById("gameMode").classList.add("output");
 });
 
 passButton.addEventListener("click", (e) => {
@@ -175,9 +180,13 @@ function randomise(colander){
 }
 
 function newRound(colander){
+    document.getElementById("got").classList.add("disappear");
+    document.getElementById("pass").classList.add("disappear");
+    document.getElementById("next").classList.add("disappear");
     gotItButton.disabled = true;
     passButton.disabled = true;
     nextButton.disabled = true;
+    document.getElementById("nextRound").classList.remove("disappear");
     nextRoundButton.disabled = false;
     window.clearInterval(interval);
     if (round < rounds.length-1) {
@@ -208,9 +217,15 @@ nextRoundButton.addEventListener("click", (e) => {
     // Reset gotItButton and begun status to enable gotItButton functionality
     gotItButton.disabled = false;
     begun = false;
+    document.getElementById("got").classList.remove("disappear");
+    document.getElementById("pass").classList.remove("disappear");
+    document.getElementById("next").classList.remove("disappear");
     document.getElementById("got").innerHTML = "Go!";
     document.getElementById("gameMode").innerHTML = "Ready?";
     nextRoundButton.disabled = true;
+    document.getElementById("nextRound").classList.add("disappear");
+    // Set CSS styles for updated round display
+    document.getElementById("round").classList.add("roundText");
 });
 
 function startStop(){

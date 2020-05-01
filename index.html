@@ -3,13 +3,30 @@
     <head>
         <title>Colander Game</title>
         <link href="style.css" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
     </head>
     <body>
+        <nav class="navbar" id="nav">
+            <h3>COLANDER GAME</h3>
+        </nav>
+        <button class="accordion" id="accordion">How to play</button>
+        <div class="panel" id="accordion">
+            <p>Everyone writes down 3 or 4 things each on its own strip of paper (you'll want to adjust this depending on how many people are playing).</p>
+            <p>Once done you stick them all in a colander and then play 3 or 4 rounds involving a person taking strips out one at a time and using various methods, dictated by the round, to get their team to guess what's on the paper. Allow between 30-60 seconds per turn, up to you.</p>
+            <p>You may pass once per turn. If you pick out another that you cant do, you may return to the one you passed but if your team guesses it correctly, you must then return to the other one you struggled with.</p>
+            <p>You continue repeating each round, taking it in turns between teams until every answer has been correctly guessed. After each turn, teams should retain the answers they got correct and return all others to the colander.</p>
+            <p>Once a full round is completed, all answers go back in the colander  ready for the next.</p>
+            <p>Every team member must  have an equal number of turns to describe.</p>
+            <p>When a team guesses the last answer, the stopwatch should be paused and the remaining time used for the first iteration of the next round.</p>
+            <p>At the end of each turn, ensure you retain the correct answers and the passes or unanswered ones go back in the colander.</p>
+            <p>Rounds:</p>
+            <p>1. Articulate - describe what's on the paper using as many words as needed without using key words that are on the paper. You may not say rhymes with. You may not use actions. You may not use props.</p>
+            <p>2. Charades - describe what's on the paper using actions only. Words are not permitted.</p>
+            <p>3. Articulate V2 - describe again with either 1 or 2 words (this needs to be determined before the round starts). All other rules from round 1 apply.</p>
+            <p>4. Charades with blanket - same rules as round 2, but the person performing the actions has a blanket or sheet covering at least two thirds of them.</p>
+            <p>If a rule is broken whilst someone is describing, then the answer they were describing becomes null and void for that turn and goes back in the colander. It does not count as a pass.</p>
+        </div>
         <div class="container">
-            <button class="accordion">How to play</button>
-            <div class="panel">
-                <p>Lorem ipsum...</p>
-            </div>
             <div class="disappear scores" id="scores">
                 <div class="team team1" id="team1div">
                     <h5>Team A</h5>
@@ -20,8 +37,12 @@
                     <h5><span id="team2">0</span></h5>
                 </div>
             </div>
-            <div class=" disappear round" id="round">
-                <p><span id="round">Round 1: Articulate</span></p>
+            <div class="disappear round" id="round">
+                <br>
+                <br>
+                <br>
+                <br>
+                <p class="roundText"><span id="round">Round 1: Articulate</span></p>
             </div>
             <div class="colander" id="fillColander">
                 <img src="static/img/colander.png" class="img">
@@ -41,8 +62,7 @@
             <div class="disappear buttons" id="buttons">
                 <button class="btn gameBtn" id="got">Go!</button>
                 <button class="btn gameBtn" id="pass">Pass</button><button class="btn gameBtn" id="next">Next player</button>
-                <button class="btn gameBtn" id="nextRound">Next round >></button>
-                <!--<button id="startStop" onclick="startStop()">Start</button><button id="reset" onclick="reset()">Reset</button>-->
+                <button class="btn gameBtn disappear" id="nextRound">Next round >></button>
             </div>
         </div>
         <script src="script.js"></script>
