@@ -1,20 +1,22 @@
 const colanderForm = document.getElementById("colanderForm");
+const settingsForm = document.getElementById("settingsForm");
 const beginButton = document.getElementById("begin");
 const gotItButton = document.getElementById("got");
 const passButton = document.getElementById("pass");
 const nextButton = document.getElementById("next");
 const nextRoundButton = document.getElementById("nextRound");
+const resetButton = document.getElementById("home");
 
 const team1Span = document.getElementById("team1");
 const team2Span = document.getElementById("team2");
 
 const roundSpan = document.getElementById("round");
 
-let cloned = ['Sam', 'Horse', 'Arsenal', 'Chicago Bulls', 'Hunter S Thompson', 'Akala'];
-let colander = ['Sam', 'Horse', 'Arsenal', 'Chicago Bulls', 'Hunter S Thompson', 'Akala'];
+let cloned = [];
+let colander = [];
 let got = [];
 let passed = [];
-let rounds = ['Round 1: Articulate', 'Round 2: Charades', 'Round 3: Articulate (2 words)', 'Round 4: Charades (with blanket)']
+let rounds = ['Round 1: Articulate', 'Round 2: Charades', 'Round 3: Articulate V2', 'Round 4: Charades V2']
 let output = "Ready?";
 let begun = false;
 
@@ -23,13 +25,16 @@ let turn = 1;
 // Add active class to team1 by default
 document.getElementById("team1div").classList.add("active");
 
-// Var to determine what round it is
+// Var to determine what round it is (set as 0 for use with rounds array)
 let round = 0;
+
+// Default value may be overwritten in settingsForm event listener
+let roundsNum = 3;
 
 let team1Score = 0;
 let team2Score = 0;
 
-// Var for initial stopwatch value
+// Default value may be overwritten in settingsForm event listener
 let seconds = 60;
 
 // Var to hold setInterval function
@@ -41,23 +46,33 @@ let status = "stopped";
 colanderForm.addEventListener("submit", (e) => {
     e.preventDefault();
     var input = document.forms["colanderForm"]["input"].value;
-    colander.push(input);
-    cloned.push(input);
-    console.log(colander);
+    // If input isn't blank, push to colander and cloned
+    input ? colander.push(input): "";
+    input ? cloned.push(input): "";
     // Reset form input in browser
     colanderForm.reset();
     return colander;
 });
 
-beginButton.addEventListener("click", (e) => {
-    document.getElementById("nav").classList.add("disappear");
-    document.getElementById("accordion").classList.add("disappear");
-    document.getElementById("fillColander").classList.add("disappear");
-    document.getElementById("scores").classList.remove("disappear");
-    document.getElementById("round").classList.remove("disappear");
-    document.getElementById("gameMode").classList.remove("disappear");
-    document.getElementById("display").classList.remove("disappear");
-    document.getElementById("buttons").classList.remove("disappear");
+settingsForm.addEventListener("submit", (e) => {
+    if (colander.length < 18) {
+        alert("Please add more items to the colander before playing.")
+    } else {
+        e.preventDefault();
+        roundsNum = document.querySelector('input[name="roundsNum"]:checked').value;
+        seconds = document.querySelector('input[name="turnTime"]:checked').value;
+        document.getElementById("nav").classList.add("disappear");
+        document.getElementById("accordion").classList.add("disappear");
+        document.getElementById("fillColander").classList.add("disappear");
+        document.getElementById("scores").classList.remove("disappear");
+        document.getElementById("round").classList.remove("disappear");
+        document.getElementById("gameMode").classList.remove("disappear");
+        document.getElementById("display").classList.remove("disappear");
+        document.getElementById("buttons").classList.remove("disappear");
+        document.getElementById("got").classList.add("activeBtn");
+        passButton.disabled = true;
+        nextButton.disabled = true;
+    }
 });
 
 function timer(){
@@ -70,12 +85,14 @@ function timer(){
         status = "stopped";
         seconds = "Time's up! Next player's turn.";
         turn++;
-        //document.getElementById("next").classList.add("visible");
         gotItButton.disabled = true;
         passButton.disabled = true;
         nextButton.disabled = false;
+        document.getElementById("got").classList.remove("activeBtn");
+        document.getElementById("pass").classList.remove("activeBtn");
+        document.getElementById("next").classList.add("activeBtn");
         // Push passed contents back into colander at end of turn
-        passed.length > 0 ? colander.push(passed.pop()) : colander = colander;
+        passed.length > 0 ? colander.push(passed.pop()) : "";
     }
 
     // Alternate CSS classes to indicate active team
@@ -94,7 +111,7 @@ function timer(){
 
 nextButton.addEventListener("click", (e) => {
     // Reset timer and display
-    seconds = 60;
+    seconds = document.querySelector('input[name="turnTime"]:checked').value;
     document.getElementById("display").innerHTML = seconds;
     output = "Ready?";
     document.getElementById("gameMode").innerHTML = output;
@@ -105,6 +122,8 @@ nextButton.addEventListener("click", (e) => {
     passButton.disabled = false;
     begun = false;
     nextButton.disabled = true;
+    document.getElementById("next").classList.remove("activeBtn");
+    document.getElementById("got").classList.add("activeBtn");
 });
 
 // Val to retain previous colander array value for splicing after button click
@@ -112,6 +131,7 @@ let prevRandom = 0;
 
 gotItButton.addEventListener("click", (e) => {
     passButton.disabled = false;
+    document.getElementById("pass").classList.add("activeBtn");
 
     if (begun == false) {
         begun = true;
@@ -124,8 +144,6 @@ gotItButton.addEventListener("click", (e) => {
         // Remove item from colander into team collection
         colander.splice(prevRandom, 1);
         got.push(output);
-        console.log(colander);
-        console.log(got);
 
         // Update team score
         turn % 2 != 0 ? team1Score++ : team2Score++;
@@ -146,7 +164,6 @@ passButton.addEventListener("click", (e) => {
     if (passed.length == 0) {
         colander.splice(prevRandom, 1);
         passed.push(output);
-        console.log(passed);
     } else {
         document.getElementById("pass").classList.add("denied");
         document.getElementById("pass").innerHTML = "X";
@@ -183,14 +200,10 @@ function newRound(colander){
     document.getElementById("got").classList.add("disappear");
     document.getElementById("pass").classList.add("disappear");
     document.getElementById("next").classList.add("disappear");
-    gotItButton.disabled = true;
-    passButton.disabled = true;
-    nextButton.disabled = true;
-    document.getElementById("nextRound").classList.remove("disappear");
-    nextRoundButton.disabled = false;
     window.clearInterval(interval);
-    if (round < rounds.length-1) {
-        document.getElementById("gameMode").innerHTML = "Colander is empty. You have " + seconds + " seconds remaining. Click the 'next round' button to resume.";
+    if (round < roundsNum-1) {
+        document.getElementById("gameMode").innerHTML = "Colander is empty. You have " + seconds + " seconds remaining. Click 'next round' to resume.";
+        document.getElementById("nextRound").classList.remove("disappear");
     } else {
         switch (true) {
             case (team1Score > team2Score):
@@ -203,6 +216,7 @@ function newRound(colander){
                 document.getElementById("gameMode").innerHTML = "Game over. It's a draw!";
                 break;
         }
+        document.getElementById("home").classList.remove("disappear");
     }
     return colander;
 }
@@ -222,34 +236,16 @@ nextRoundButton.addEventListener("click", (e) => {
     document.getElementById("next").classList.remove("disappear");
     document.getElementById("got").innerHTML = "Go!";
     document.getElementById("gameMode").innerHTML = "Ready?";
-    nextRoundButton.disabled = true;
     document.getElementById("nextRound").classList.add("disappear");
     // Set CSS styles for updated round display
     document.getElementById("round").classList.add("roundText");
+    document.getElementById("pass").classList.remove("activeBtn");
 });
 
-function startStop(){
-    if (status === "stopped") {
-        // Start
-        interval = window.setInterval(timer, 1000);
-        document.getElementById("startStop").innerHTML = "Stop";
-        status = "started";
-    } else {
-        // Stop
-        window.clearInterval(interval);
-        document.getElementById("startStop").innerHTML = "Start";
-        status = "stopped";
-    }
-}
-
-// Reset function
-
-function reset(){
-    window.clearInterval(interval);
-    seconds = 60;
-    document.getElementById("display").innerHTML = seconds;
-    document.getElementById("startStop").innerHTML = "Start";
-}
+resetButton.addEventListener("click", (e) => {
+    // Reload page to reset settings
+    location.reload();
+});
 
 // 'How to play' accordion
 

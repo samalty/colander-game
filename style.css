@@ -33,13 +33,12 @@
     .navbar{
         width: 100%;
         height: auto;
-        background-color: #ffffff;
-        border-bottom: 2px solid #000033;
     }
 
-    h3{
+    h2{
         font-family: 'Bree Serif', serif;
-        margin-left: 10px;
+        color: #ffffff;
+        text-align: center;
     }
 
     /* 'How to play' accordion */
@@ -53,10 +52,10 @@
         text-align: left;
         font-family: 'Bree Serif', serif;
         font-size: 16px;
-        border-bottom: 1px solid #000033;
         border-right: none;
         outline: none;
-        transition: 0.4s;
+        transition: 0.5s;
+        margin-top: 5px;
     }
 
     .panel {
@@ -64,13 +63,16 @@
         background-color: #e6e6ff;
         max-height: 0;
         overflow: hidden;
-        border-bottom: 1px solid #000033;
         transition: max-height 0.5s ease-out;
         margin-bottom: 5px;
     }
 
     p{
         font-family: 'Bree Serif', serif;
+    }
+
+    .expand{
+        float: right;
     }
 
     /* Scores */
@@ -89,6 +91,8 @@
         border-radius: 10px;
         border: 5px solid #ffffff;
         box-sizing: border-box;
+        margin-bottom: 50px;
+        transition: 0.5s;
     }
 
     .team1{
@@ -107,21 +111,24 @@
 
     .active{
         border: 5px solid #00b300;
+        transition: 0.5s;
     }
 
     /* Round */
 
     .round{
         text-align: center;
+        transition: 0.5s;
     }
 
     .roundText{
         font-family: 'Bree Serif', serif;
         color: #ffff00;
         font-size: 30px;
+        transition: 0.5s;
     }
 
-    /* Form */
+    /* Colander form */
 
     .colander{
         width: 100%;
@@ -142,15 +149,71 @@
         font-family: 'Bree Serif', serif;
         font-size: 20px;
         display: inline-block;
-        border: 3px solid #ffffff;
+        border: 2px solid #ffffff;
         border-radius: 10px;
         cursor: pointer;
         color: #ffffff;
     }
     .submit{
-        padding: 10px;
+        padding: 5px;
         width: 75%;
-        background-color: #ff9900;
+        background-image: linear-gradient(#cc7a00, #ff9900);
+    }
+
+    /* Settings form */
+
+    .settings{
+        height: auto;
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .question{
+        color: #ffffff;
+        font-size: 18px;
+    }
+    
+    input[type="radio"]{
+        opacity: 0;
+        width: 0;
+        margin: 0;
+    }
+
+    label[for="three"],
+    label[for="four"],
+    label[for="thirty"],
+    label[for="fourtyfive"],
+    label[for="sixty"]{
+        font-family: 'Bree Serif', serif;
+        display: inline-block;
+        cursor: pointer;
+        padding: 10px;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+        background-image: linear-gradient(#990000, #cc0000);
+    }
+
+    label[for="three"],
+    label[for="four"]{
+        width: 230px;
+        margin: 5px;
+    }
+
+    label[for="thirty"],
+    label[for="fourtyfive"],
+    label[for="sixty"]{
+        width: 50px;
+        border-radius: 15%;
+        margin-bottom: 24px;
+    }
+
+    input:checked + label[for="three"],
+    input:checked + label[for="four"],
+    input:checked + label[for="thirty"],
+    input:checked + label[for="fourtyfive"],
+    input:checked + label[for="sixty"]{
+        background-image: linear-gradient(#008800, #00b300);
     }
 
     /* Colander image */
@@ -159,16 +222,6 @@
         display: block;
         width: 30%;
         height: auto;
-        margin: auto;
-    }
-
-    /* Begin button */
-
-    .begin{
-        display: block;
-        padding: 10px;
-        background-color: #002266;
-        width: 75%;
         margin: auto;
     }
 
@@ -181,13 +234,13 @@
 
     #output{
         font-family: 'Bree Serif', serif;
-        font-size: 36px;
+        font-size: 32px;
         color: #ffffff;
     }
 
     .output{
         font-family: 'Bree Serif', serif;
-        font-size: 36px;
+        font-size: 32px;
         color: #ffffff;
         margin-top: 36px;
     }
@@ -222,12 +275,17 @@
         width: 48%;
         padding: 20px;
         margin: 3px;
+        color: #999999;
     }
-    #got{
+    #got,
+    #home{
         background-image: linear-gradient(#008800, #00b300);
         margin: auto;
         width: 100%;
         border: 3px solid #00b300;
+    }
+    #home{
+        color: #ffffff;
     }
     #pass{
         background-image: linear-gradient(#990000, #cc0000);
@@ -241,7 +299,12 @@
     #nextRound{
         background-image: linear-gradient(#cc7a00, #ff9900);
         width: 97%;
+        color: #ffffff;
         border: 3px solid #ff9900;
+    }
+    .activeBtn{
+        color: #ffffff;
+        transition: 0.5s;
     }
 
     /* Disappear */
