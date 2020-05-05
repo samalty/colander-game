@@ -6,11 +6,11 @@
         <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar" id="nav">
-            <h2>COLANDER GAME</h2>
-        </nav>
         <div class="container">
-            <div class="disappear scores" id="scores">
+            <nav class="navbar homeScreen" id="nav">
+                <h2>COLANDER GAME</h2>
+            </nav>
+            <div class="disappear scores gameScreen" id="scores">
                 <div class="team team1" id="team1div">
                     <h5>Team A</h5>
                     <h5><span id="team1">0</span></h5>
@@ -20,10 +20,10 @@
                     <h5><span id="team2">0</span></h5>
                 </div>
             </div>
-            <div class="disappear round" id="round">
+            <div class="disappear round gameScreen" id="round">
                 <p class="roundText"><span id="round">Round 1: Articulate</span></p>
             </div>
-            <div class="colander" id="fillColander">
+            <div class="colander homeScreen" id="fillColander">
                 <img src="static/img/colander.png" class="img">
                 <form class="form" id="colanderForm">
                     <input type="text" name="input">
@@ -47,33 +47,33 @@
                     <button type="submit" class="btn submit">Begin game</button>
                 </form>
             </div>
-            <div class="disappear" id="gameMode">
+            <div class="disappear gameScreen" id="gameMode">
                 <p id="output">Ready?</p>
             </div>
-            <div class="disappear" id="display">
+            <div class="disappear gameScreen" id="display">
                 <p id="timer"></p>
             </div>
-            <div class="disappear buttons" id="buttons">
-                <button class="btn gameBtn" id="got">Go!</button>
-                <button class="btn gameBtn" id="pass">Pass</button><button class="btn gameBtn" id="next">Next player</button>
+            <div class="disappear buttons gameScreen" id="buttons">
+                <button class="btn gameBtn gpn" id="got">Go!</button>
+                <button class="btn gameBtn gpn" id="pass">Pass</button><button class="btn gameBtn gpn" id="next">Next player</button>
                 <button class="btn gameBtn disappear" id="nextRound">Next round >></button>
                 <button class="btn gameBtn disappear" id="home">Home</button>
             </div>
-        </div>
-        <button class="accordion" id="accordion">How to play<span class="expand">+</span></button>
-        <div class="panel" id="accordion">
-            <p>Separate yourselves into two teams. Ideally you'll have at least three players on each side.</p>
-            <p>Have everybody add a number of items to the colander. You can add whatever you want (e.g. the name of a film, a celebrity, an adjective etc.) just as long as it's realistically possible to describe.</p>
-            <p>How many items each person adds is up to your discretion, but typically this will be between two and four.</p>
-            <p>Once the colander is full, players on either team will take turns describing randomised items to their team mates, who have to correctly guess as many as they can within the alloted timeframe.</p>
-            <p>There are a maximum of four rounds, each of which will determine the means used by players to describe the items drawn. These rounds are:</p>
-            <p><b>1. Articulate:</b> describe the item using as many words as needed without using key words that are on the paper. You may not say "rhymes with". You may not use actions. You may not use props.</p>
-            <p><b>2. Charades:</b> describe the item using actions only. Words are not permitted.</p>
-            <p><b>3. Articulate V2:</b> describe the item using a maximum of two words. All other rules from round 1 apply.</p>
-            <p><b>4. Charades V2:</b> the same rules as round 2 apply, only the person performing the actions does so beneath a blanket or sheet.</p>
-            <p>A new round begins when the colander is empty, at which point the active team's remaining time will be paused and carried over into the next round. All items are added back to the colander at the beginning of each round. The game ends once the colander has been emptied during the final round.</p>
-            <p>Each player is allowed to pass once per turn. Passed items are returned to the colander at the beginning of each turn. If a player has passed on an item and there are no remaining items in the colander, the passed item will be displayed once more during that turn.</p>
-            <p>Enjoy!</p>
+            <button class="accordion homeScreen" id="accordion">How to play<span class="expand">+</span></button>
+            <div class="panel" id="accordion">
+                <p>Separate yourselves into two teams. Ideally you'll have at least three players on each side.</p>
+                <p>Have everybody add a number of items to the colander. You can add whatever you want (e.g. the name of a film, a celebrity, an adjective etc.) just as long as it's realistically possible to describe.</p>
+                <p>How many items each person adds is up to your discretion, but typically this will be between two and four.</p>
+                <p>Once the colander is full, players on either team will take turns describing randomised items to their team mates, who have to correctly guess as many as they can within the alloted timeframe.</p>
+                <p>There are a maximum of four rounds, each of which will determine the means used by players to describe the items drawn. These rounds are:</p>
+                <p><b>1. Articulate:</b> describe the item using as many words as needed without using key words that are on the paper. You may not say "rhymes with". You may not use actions. You may not use props.</p>
+                <p><b>2. Charades:</b> describe the item using actions only. Words are not permitted.</p>
+                <p><b>3. Articulate V2:</b> describe the item using a maximum of two words. All other rules from round 1 apply.</p>
+                <p><b>4. Charades V2:</b> the same rules as round 2 apply, only the person performing the actions does so beneath a blanket or sheet.</p>
+                <p>A new round begins when the colander is empty, at which point the active team's remaining time will be paused and carried over into the next round. All items are added back to the colander at the beginning of each round. The game ends once the colander has been emptied during the final round.</p>
+                <p>Each player is allowed to pass once per turn. Passed items are returned to the colander at the beginning of each turn. If a player has passed on an item and there are no remaining items in the colander, the passed item will be displayed once more during that turn.</p>
+                <p>Enjoy!</p>
+            </div>
         </div>
         <script src="script.js"></script>
     </body>

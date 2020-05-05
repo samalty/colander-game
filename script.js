@@ -12,11 +12,11 @@ const team2Span = document.getElementById("team2");
 
 const roundSpan = document.getElementById("round");
 
-let cloned = [];
-let colander = [];
+let cloned = ['Hunter S Thompson', 'Seattle Supersonics', 'Cheese plant', 'Akala', 'Toast', 'Black Star', 'Banana', 'Kelloggs', 'Chapstick'];
+let colander = ['Hunter S Thompson', 'Seattle Supersonics', 'Cheese plant', 'Akala', 'Toast', 'Black Star', 'Banana', 'Kelloggs', 'Chapstick'];
 let got = [];
 let passed = [];
-let rounds = ['Round 1: Articulate', 'Round 2: Charades', 'Round 3: Articulate V2', 'Round 4: Charades V2']
+let rounds = ['Round 1: Articulate', 'Round 2: Charades', 'Round 3: Articulate V2', 'Round 4: Charades V2'];
 let output = "Ready?";
 let begun = false;
 
@@ -43,6 +43,11 @@ let interval = null;
 // Var to hold stopwatch status
 let status = "stopped";
 
+// Grouped elements for JS conditional CSS calls throughout script
+const homeScreen = document.getElementsByClassName("homeScreen");
+const gameScreen = document.getElementsByClassName("gameScreen");
+const gotPassNext = document.getElementsByClassName("gpn");
+
 colanderForm.addEventListener("submit", (e) => {
     e.preventDefault();
     var input = document.forms["colanderForm"]["input"].value;
@@ -55,24 +60,23 @@ colanderForm.addEventListener("submit", (e) => {
 });
 
 settingsForm.addEventListener("submit", (e) => {
-    if (colander.length < 18) {
-        alert("Please add more items to the colander before playing.")
-    } else {
+    //if (colander.length < 18) {
+    //    alert("Please add more items to the colander before playing.")
+    //} else {
         e.preventDefault();
+        // Establish rounds and time limit
         roundsNum = document.querySelector('input[name="roundsNum"]:checked').value;
         seconds = document.querySelector('input[name="turnTime"]:checked').value;
-        document.getElementById("nav").classList.add("disappear");
-        document.getElementById("accordion").classList.add("disappear");
-        document.getElementById("fillColander").classList.add("disappear");
-        document.getElementById("scores").classList.remove("disappear");
-        document.getElementById("round").classList.remove("disappear");
-        document.getElementById("gameMode").classList.remove("disappear");
-        document.getElementById("display").classList.remove("disappear");
-        document.getElementById("buttons").classList.remove("disappear");
+        // Hide home screen elements and show game screen elements
+        for (var i = 0; i < homeScreen.length; i++) homeScreen[i].classList.add("disappear");
+        for (var i = 0; i < gameScreen.length; i++) gameScreen[i].classList.remove("disappear");
+        // Enable and disable buttons
         document.getElementById("got").classList.add("activeBtn");
         passButton.disabled = true;
         nextButton.disabled = true;
-    }
+        document.getElementById("display").innerHTML = seconds;
+        document.getElementById("display").classList.add("output");
+    //}
 });
 
 function timer(){
@@ -104,6 +108,7 @@ function timer(){
         case (false):
             document.getElementById("team2div").classList.add("active");
             document.getElementById("team1div").classList.remove("active");
+            break;
     }
     
     document.getElementById("display").innerHTML = seconds;
@@ -119,29 +124,28 @@ nextButton.addEventListener("click", (e) => {
 
     // Change button status for next player
     gotItButton.disabled = false;
-    passButton.disabled = false;
-    begun = false;
+    document.getElementById("got").classList.add("activeBtn");
     nextButton.disabled = true;
     document.getElementById("next").classList.remove("activeBtn");
-    document.getElementById("got").classList.add("activeBtn");
+    begun = false;
 });
 
 // Val to retain previous colander array value for splicing after button click
 let prevRandom = 0;
 
 gotItButton.addEventListener("click", (e) => {
-    passButton.disabled = false;
-    document.getElementById("pass").classList.add("activeBtn");
-
     if (begun == false) {
         begun = true;
-        interval = window.setInterval(timer, 100);
+        interval = window.setInterval(timer, 1000);
         status = "started";
         document.getElementById("got").innerHTML = "Got It!";
+        // Enable pass button
+        passButton.disabled = false;
+        document.getElementById("pass").classList.add("activeBtn");
     } else if (colander.length < 1) {
         passed.length = 0 ? window.clearInterval(interval) : colander.push(passed[0]);    
     } else {
-        // Remove item from colander into team collection
+        // Remove item from colander into got array
         colander.splice(prevRandom, 1);
         got.push(output);
 
@@ -151,8 +155,8 @@ gotItButton.addEventListener("click", (e) => {
         team2Span.innerHTML = team2Score;
     }
 
-    const random = randomise(colander);
     // Return new colander output from randomise function
+    const random = randomise(colander);
     output = random[0];
     // Overwrite prevRandom value for splice method in else statement
     prevRandom = random[1];
@@ -161,21 +165,23 @@ gotItButton.addEventListener("click", (e) => {
 });
 
 passButton.addEventListener("click", (e) => {
-    if (passed.length == 0) {
-        colander.splice(prevRandom, 1);
-        passed.push(output);
-    } else {
-        document.getElementById("pass").classList.add("denied");
-        document.getElementById("pass").innerHTML = "X";
-        setTimeout(function(){ document.getElementById("pass").classList.remove("denied") }, 1000);
-        setTimeout(function(){ document.getElementById("pass").innerHTML = "Pass" }, 1000);
+    switch (passed.length == 0) {
+        case (true):
+            // Shift passed item into passed array
+            passed.push(colander.splice(prevRandom, 1));
+            // Disable pass button
+            document.getElementById("pass").classList.remove("activeBtn");
+            // Return new colander output from randomise function
+            const random = randomise(colander);
+            output = random[0];
+            // Overwrite prevRandom value for splice method in else statement
+            prevRandom = random[1];
+            break;
+        case (false):
+            document.getElementById("pass").innerHTML = "X";
+            setTimeout(function(){ document.getElementById("pass").innerHTML = "Pass" }, 2000);
+            break;
     }
-
-    const random = randomise(colander);
-    // Return new colander output from randomise function
-    output = random[0];
-    // Overwrite prevRandom value for splice method in else statement
-    prevRandom = random[1];
 });
 
 function randomise(colander){
@@ -192,14 +198,12 @@ function randomise(colander){
         document.getElementById("gameMode").innerHTML = output;
     } else document.getElementById("gameMode").innerHTML = output;
 
-    //output == undefined ?  newRound(colander) : document.getElementById("gameMode").innerHTML = output;
     return [output, random];
 }
 
 function newRound(colander){
-    document.getElementById("got").classList.add("disappear");
-    document.getElementById("pass").classList.add("disappear");
-    document.getElementById("next").classList.add("disappear");
+    // Hide home screen elements
+    for (var i = 0; i < gotPassNext.length; i++) gotPassNext[i].classList.add("disappear");
     window.clearInterval(interval);
     if (round < roundsNum-1) {
         document.getElementById("gameMode").innerHTML = "Colander is empty. You have " + seconds + " seconds remaining. Click 'next round' to resume.";
@@ -231,9 +235,8 @@ nextRoundButton.addEventListener("click", (e) => {
     // Reset gotItButton and begun status to enable gotItButton functionality
     gotItButton.disabled = false;
     begun = false;
-    document.getElementById("got").classList.remove("disappear");
-    document.getElementById("pass").classList.remove("disappear");
-    document.getElementById("next").classList.remove("disappear");
+    // Reset display for next round
+    for (var i = 0; i < gotPassNext.length; i++) gotPassNext[i].classList.remove("disappear");
     document.getElementById("got").innerHTML = "Go!";
     document.getElementById("gameMode").innerHTML = "Ready?";
     document.getElementById("nextRound").classList.add("disappear");

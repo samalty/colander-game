@@ -1,315 +1,314 @@
-.colanderContainer{
-    padding: 50px;
-    display: inline-block;
+/*@media screen and (max-width: 1125px) {*/
+
+/* Body */
+
+body{
+    background-color: #abbec7;
+    background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre-big.png");
 }
+
+.container{
+    max-width: 500px;
+    height: auto;
+    margin: auto;
+}
+
+/* Navbar */
+
+.navbar{
+    width: 100%;
+    height: auto;
+}
+    
+h2{
+    font-family: 'Bree Serif', serif;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+}
+
+/* 'How to play' accordion */
+
+.accordion {
+    background-image: linear-gradient(to top, #e6e6ff, #ffffff);
+    color: #000000;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    font-family: 'Bree Serif', serif;
+    font-size: 16px;
+    border-right: none;
+    outline: none;
+    transition: 0.5s;
+    margin-top: 5px;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: #e6e6ff;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    margin-bottom: 5px;
+}
+
+p{
+    font-family: 'Bree Serif', serif;
+}
+
+.expand{
+    float: right;
+}
+
+/* Scores */
+
+.scores{
+    width: 100%;
+}
+
+.team{
+    font-family: 'Bree Serif', serif;
+    font-size: 24px;
+    float: left;
+    width: 47%;
+    padding: 5px;
+    background-color: #000000;
+    border-radius: 10px;
+    border: 5px solid #ffffff;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    transition: 0.5s;
+}
+
+.team1{
+    float: left;
+}
+
+.team2{
+    float: right;
+}
+
+h4,h5{
+    margin: 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+.active{
+    border: 5px solid #00b300;
+    transition: 0.5s;
+}
+
+/* Round */
+
+.round{
+    text-align: center;
+    transition: 0.5s;
+}
+
+.roundText{
+    font-family: 'Bree Serif', serif;
+    color: #ffff00;
+    font-size: 30px;
+    transition: 0.5s;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+}
+
+/* Colander form */
+
+.colander{
+    width: 100%;
+}
+    
+.form{
+    width: 75%;
+    margin: auto;
+    text-align: center;
+}
+    
+input{
+    width: 100%;
+    font-size: 18px;
+    margin: 5px;
+    box-sizing: border-box;
+    font-family: 'Bree Serif', serif;
+}
+
+.btn{
+    font-family: 'Bree Serif', serif;
+    font-size: 20px;
+    display: inline-block;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.submit{
+    padding: 5px;
+    width: 75%;
+    background-image: linear-gradient(#cc7a00, #ff9900);
+}
+
+/* Settings form */
+
+.settings{
+    height: auto;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.question{
+    color: #ffffff;
+    font-size: 18px;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+}
+    
+input[type="radio"]{
+    opacity: 0;
+    width: 0;
+    margin: 0;
+}
+
+label[for="three"],
+label[for="four"],
+label[for="thirty"],
+label[for="fourtyfive"],
+label[for="sixty"]{
+    font-family: 'Bree Serif', serif;
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background-image: linear-gradient(#990000, #cc0000);
+}
+
+label[for="three"],
+label[for="four"]{
+    width: 230px;
+    margin: 5px;
+}
+
+label[for="thirty"],
+label[for="fourtyfive"],
+label[for="sixty"]{
+    width: 50px;
+    border-radius: 15%;
+    margin-bottom: 24px;
+}
+
+input:checked + label[for="three"],
+input:checked + label[for="four"],
+input:checked + label[for="thirty"],
+input:checked + label[for="fourtyfive"],
+input:checked + label[for="sixty"]{
+    background-image: linear-gradient(#008800, #00b300);
+}
+
+/* Colander image */
+
+.img{
+    display: block;
+    width: 30%;
+    height: auto;
+    margin: auto;
+}
+
+/* Items */
+
+#gameMode{
+    width: 100%;
+    text-align: center;
+}
+
+#output{
+    font-family: 'Bree Serif', serif;
+    font-size: 32px;
+    color: #ffffff;
+}
+
+.output{
+    font-family: 'Bree Serif', serif;
+    font-size: 32px;
+    color: #ffffff;
+    margin-top: 36px;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+}
+
+.runningOut{
+    color: #cc0000;
+}
+
+/* Timer */
+
+#display{
+    width: 100%;
+    text-align: center;
+}
+
+#timer{
+    font-family: 'Bree Serif', serif;
+    font-size: 36px;
+    color: #ffffff;
+}
+
+/* Game buttons */
+
+.buttons{
+    position: absolute;
+    bottom: 10px;
+    width: 97%;
+    height: auto;
+}
+    
+.gameBtn{
+    box-sizing: border-box;
+    width: 48%;
+    padding: 20px;
+    margin: 3px;
+    color: #999999;
+}
+    
+#got,
+#home{
+    background-image: linear-gradient(#008800, #00b300);
+    margin: auto;
+    width: 99%;
+    border: 3px solid #00b300;
+}
+    
+#home{
+    color: #ffffff;
+}
+    
+#pass{
+    background-image: linear-gradient(#990000, #cc0000);
+    border: 3px solid #cc0000;
+}
+    
+#next{
+    background-image: linear-gradient(#cc7a00, #ff9900);
+    float: right;
+    border: 3px solid #ff9900;
+}
+    
+#nextRound{
+    background-image: linear-gradient(#cc7a00, #ff9900);
+    width: 97%;
+    color: #ffffff;
+    border: 3px solid #ff9900;
+}
+    
+.activeBtn{
+    color: #ffffff;
+    transition: 0.5s;
+}
+
+/* Disappear */
 
 .disappear{
     display: none;
-}
-
-.denied{
-    border: 5px solid #cc0000;
-}
-
-#next{
-    /*display: none;*/
-}
-
-.visible{
-    display: inline-block;
-}
-
-@media screen and (max-width: 1125px) {
-
-    /* Body */
-
-    body{
-        background-color: #abbec7;
-        background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre-big.png");
-    }
-
-    /* Navbar */
-
-    .navbar{
-        width: 100%;
-        height: auto;
-    }
-
-    h2{
-        font-family: 'Bree Serif', serif;
-        color: #ffffff;
-        text-align: center;
-    }
-
-    /* 'How to play' accordion */
-
-    .accordion {
-        background-image: linear-gradient(to top, #e6e6ff, #ffffff);
-        color: #000000;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        text-align: left;
-        font-family: 'Bree Serif', serif;
-        font-size: 16px;
-        border-right: none;
-        outline: none;
-        transition: 0.5s;
-        margin-top: 5px;
-    }
-
-    .panel {
-        padding: 0 18px;
-        background-color: #e6e6ff;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out;
-        margin-bottom: 5px;
-    }
-
-    p{
-        font-family: 'Bree Serif', serif;
-    }
-
-    .expand{
-        float: right;
-    }
-
-    /* Scores */
-
-    .scores{
-        width: 100%;
-    }
-
-    .team{
-        font-family: 'Bree Serif', serif;
-        font-size: 24px;
-        float: left;
-        width: 47%;
-        padding: 5px;
-        background-color: #000000;
-        border-radius: 10px;
-        border: 5px solid #ffffff;
-        box-sizing: border-box;
-        margin-bottom: 50px;
-        transition: 0.5s;
-    }
-
-    .team1{
-        float: left;
-    }
-
-    .team2{
-        float: right;
-    }
-
-    h4,h5{
-        margin: 0;
-        color: #ffffff;
-        text-align: center;
-    }
-
-    .active{
-        border: 5px solid #00b300;
-        transition: 0.5s;
-    }
-
-    /* Round */
-
-    .round{
-        text-align: center;
-        transition: 0.5s;
-    }
-
-    .roundText{
-        font-family: 'Bree Serif', serif;
-        color: #ffff00;
-        font-size: 30px;
-        transition: 0.5s;
-    }
-
-    /* Colander form */
-
-    .colander{
-        width: 100%;
-    }
-    .form{
-        width: 75%;
-        margin: auto;
-        text-align: center;
-    }
-    input{
-        width: 100%;
-        font-size: 20px;
-        margin: 5px;
-        box-sizing: border-box;
-        font-family: 'Bree Serif', serif;
-    }
-    .btn{
-        font-family: 'Bree Serif', serif;
-        font-size: 20px;
-        display: inline-block;
-        border: 2px solid #ffffff;
-        border-radius: 10px;
-        cursor: pointer;
-        color: #ffffff;
-    }
-    .submit{
-        padding: 5px;
-        width: 75%;
-        background-image: linear-gradient(#cc7a00, #ff9900);
-    }
-
-    /* Settings form */
-
-    .settings{
-        height: auto;
-        width: 100%;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    .question{
-        color: #ffffff;
-        font-size: 18px;
-    }
-    
-    input[type="radio"]{
-        opacity: 0;
-        width: 0;
-        margin: 0;
-    }
-
-    label[for="three"],
-    label[for="four"],
-    label[for="thirty"],
-    label[for="fourtyfive"],
-    label[for="sixty"]{
-        font-family: 'Bree Serif', serif;
-        display: inline-block;
-        cursor: pointer;
-        padding: 10px;
-        color: #ffffff;
-        border: 2px solid #ffffff;
-        background-image: linear-gradient(#990000, #cc0000);
-    }
-
-    label[for="three"],
-    label[for="four"]{
-        width: 230px;
-        margin: 5px;
-    }
-
-    label[for="thirty"],
-    label[for="fourtyfive"],
-    label[for="sixty"]{
-        width: 50px;
-        border-radius: 15%;
-        margin-bottom: 24px;
-    }
-
-    input:checked + label[for="three"],
-    input:checked + label[for="four"],
-    input:checked + label[for="thirty"],
-    input:checked + label[for="fourtyfive"],
-    input:checked + label[for="sixty"]{
-        background-image: linear-gradient(#008800, #00b300);
-    }
-
-    /* Colander image */
-
-    .img{
-        display: block;
-        width: 30%;
-        height: auto;
-        margin: auto;
-    }
-
-    /* Items */
-
-    #gameMode{
-        width: 100%;
-        text-align: center;
-    }
-
-    #output{
-        font-family: 'Bree Serif', serif;
-        font-size: 32px;
-        color: #ffffff;
-    }
-
-    .output{
-        font-family: 'Bree Serif', serif;
-        font-size: 32px;
-        color: #ffffff;
-        margin-top: 36px;
-    }
-
-    .runningOut{
-        color: #cc0000;
-    }
-
-    /* Timer */
-
-    #display{
-        width: 100%;
-        text-align: center;
-    }
-
-    #timer{
-        font-family: 'Bree Serif', serif;
-        font-size: 36px;
-        color: #ffffff;
-    }
-
-    /* Game buttons */
-
-    .buttons{
-        position: absolute;
-        bottom: 10px;
-        width: 97%;
-        height: auto;
-    }
-    .gameBtn{
-        box-sizing: border-box;
-        width: 48%;
-        padding: 20px;
-        margin: 3px;
-        color: #999999;
-    }
-    #got,
-    #home{
-        background-image: linear-gradient(#008800, #00b300);
-        margin: auto;
-        width: 100%;
-        border: 3px solid #00b300;
-    }
-    #home{
-        color: #ffffff;
-    }
-    #pass{
-        background-image: linear-gradient(#990000, #cc0000);
-        border: 3px solid #cc0000;
-    }
-    #next{
-        background-image: linear-gradient(#cc7a00, #ff9900);
-        float: right;
-        border: 3px solid #ff9900;
-    }
-    #nextRound{
-        background-image: linear-gradient(#cc7a00, #ff9900);
-        width: 97%;
-        color: #ffffff;
-        border: 3px solid #ff9900;
-    }
-    .activeBtn{
-        color: #ffffff;
-        transition: 0.5s;
-    }
-
-    /* Disappear */
-
-    .disappear{
-        display: none;
-    }
 }
