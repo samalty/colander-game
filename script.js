@@ -12,8 +12,8 @@ const team2Span = document.getElementById("team2");
 
 const roundSpan = document.getElementById("round");
 
-let cloned = ['Hunter S Thompson', 'Seattle Supersonics', 'Cheese plant', 'Akala', 'Toast', 'Black Star', 'Banana', 'Kelloggs', 'Chapstick'];
-let colander = ['Hunter S Thompson', 'Seattle Supersonics', 'Cheese plant', 'Akala', 'Toast', 'Black Star', 'Banana', 'Kelloggs', 'Chapstick'];
+let cloned = [];
+let colander = [];
 let got = [];
 let passed = [];
 let rounds = ['Round 1: Articulate', 'Round 2: Charades', 'Round 3: Articulate V2', 'Round 4: Charades V2'];
@@ -60,9 +60,10 @@ colanderForm.addEventListener("submit", (e) => {
 });
 
 settingsForm.addEventListener("submit", (e) => {
-    //if (colander.length < 18) {
-    //    alert("Please add more items to the colander before playing.")
-    //} else {
+    if (colander.length < 18) {
+        e.preventDefault();
+        alert("Please add more items to the colander before playing.")
+    } else {
         e.preventDefault();
         // Establish rounds and time limit
         roundsNum = document.querySelector('input[name="roundsNum"]:checked').value;
@@ -74,9 +75,10 @@ settingsForm.addEventListener("submit", (e) => {
         document.getElementById("got").classList.add("activeBtn");
         passButton.disabled = true;
         nextButton.disabled = true;
+        // Display time limit as selected in settings form
         document.getElementById("display").innerHTML = seconds;
         document.getElementById("display").classList.add("output");
-    //}
+    }
 });
 
 function timer(){

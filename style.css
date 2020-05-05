@@ -1,5 +1,3 @@
-/*@media screen and (max-width: 1125px) {*/
-
 /* Body */
 
 body{
@@ -260,8 +258,17 @@ input:checked + label[for="sixty"]{
 .buttons{
     position: absolute;
     bottom: 10px;
-    width: 97%;
+    width: 500px;
     height: auto;
+}
+
+@media screen and (max-width: 500px) {
+    .buttons{
+        position: absolute;
+        bottom: 10px;
+        width: 97%;
+        height: auto;
+    }
 }
     
 .gameBtn{
