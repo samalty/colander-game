@@ -140,7 +140,7 @@ let prevRandom = 0;
 gotItButton.addEventListener("click", (e) => {
     if (begun == false) {
         begun = true;
-        interval = window.setInterval(timer, 100);
+        interval = window.setInterval(timer, 1000);
         status = "started";
         document.getElementById("got").innerHTML = "Got It!";
         // Enable pass button
