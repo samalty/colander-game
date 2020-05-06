@@ -227,6 +227,7 @@ input:checked + label[for="sixty"]{
     font-family: 'Bree Serif', serif;
     font-size: 32px;
     color: #ffffff;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
 }
 
 .output{

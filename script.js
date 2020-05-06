@@ -60,10 +60,10 @@ colanderForm.addEventListener("submit", (e) => {
 });
 
 settingsForm.addEventListener("submit", (e) => {
-    //if (colander.length < 18) {
-    //    e.preventDefault();
-    //    alert("Please add more items to the colander before playing.")
-    //} else {
+    if (colander.length < 18) {
+        e.preventDefault();
+        alert("There must be at least 18 items in the colander in order to play. You currently have " + colander.length + " items.");
+    } else {
         e.preventDefault();
         // Establish rounds and time limit
         roundsNum = document.querySelector('input[name="roundsNum"]:checked').value;
@@ -78,7 +78,7 @@ settingsForm.addEventListener("submit", (e) => {
         // Display time limit as selected in settings form
         document.getElementById("display").innerHTML = seconds;
         document.getElementById("display").classList.add("output");
-    //}
+    }
 });
 
 function timer(){
@@ -86,7 +86,8 @@ function timer(){
     document.getElementById("display").classList.add("output");
     seconds <= 10 && seconds >= 0 ? document.getElementById("display").classList.add("runningOut"): "";
     if (seconds  === 0) {
-        document.getElementById("display").classList.remove("runningOut")
+        document.getElementById("display").classList.remove("runningOut");
+        document.getElementById("gameMode").classList.add("disappear");
         window.clearInterval(interval);
         status = "stopped";
         seconds = "Time's up! Next player's turn.";
@@ -121,6 +122,7 @@ nextButton.addEventListener("click", (e) => {
     seconds = document.querySelector('input[name="turnTime"]:checked').value;
     document.getElementById("display").innerHTML = seconds;
     output = "Ready?";
+    document.getElementById("gameMode").classList.remove("disappear");
     document.getElementById("gameMode").innerHTML = output;
     document.getElementById("got").innerHTML = "Go!";
 
@@ -138,7 +140,7 @@ let prevRandom = 0;
 gotItButton.addEventListener("click", (e) => {
     if (begun == false) {
         begun = true;
-        interval = window.setInterval(timer, 1000);
+        interval = window.setInterval(timer, 100);
         status = "started";
         document.getElementById("got").innerHTML = "Got It!";
         // Enable pass button
@@ -209,6 +211,7 @@ function newRound(colander){
     window.clearInterval(interval);
     if (round < roundsNum-1) {
         document.getElementById("gameMode").innerHTML = "Colander is empty. You have " + seconds + " seconds remaining. Click 'next round' to resume.";
+        document.getElementById("display").classList.add("disappear");
         document.getElementById("nextRound").classList.remove("disappear");
     } else {
         switch (true) {
@@ -222,6 +225,7 @@ function newRound(colander){
                 document.getElementById("gameMode").innerHTML = "Game over. It's a draw!";
                 break;
         }
+        document.getElementById("display").classList.add("disappear");
         document.getElementById("home").classList.remove("disappear");
     }
     return colander;
@@ -242,6 +246,7 @@ nextRoundButton.addEventListener("click", (e) => {
     document.getElementById("got").innerHTML = "Go!";
     document.getElementById("gameMode").innerHTML = "Ready?";
     document.getElementById("nextRound").classList.add("disappear");
+    document.getElementById("display").classList.remove("disappear");
     // Set CSS styles for updated round display
     document.getElementById("round").classList.add("roundText");
     document.getElementById("pass").classList.remove("activeBtn");
